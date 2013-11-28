@@ -1,0 +1,100 @@
+" @author - Shahmir Javaid
+" @package - vim
+"
+" for best results add to `/etc/vimrc/vimrc.local`
+
+" GENERAL SETS
+"
+set expandtab
+set shiftwidth=4        " Number of space used for >>, >
+set softtabstop=4       " Number of spaces that <TAB> uses
+set smartindent         " Indent the next line like C
+set noro                " user has to type ! for write to occur
+set showbreak=֏\    " The breakline preceding character
+set fillchars=vert:\|    " The verticle split character
+set listchars=tab:▸\ ,eol:¶,extends:❯,precedes:❮,trail:.
+set number              " Enable numbering
+set title               " Set the title of the window to the vim filename
+set dictionary=/usr/share/dict/words
+set spellfile=~/.vim/custom-dictionary.utf-8.add
+set notimeout
+set ttimeout
+set ttimeoutlen=10
+
+" PREFACE
+"
+au VimResized * :wincmd =
+let mapleader = ","
+
+" BACKUP
+"
+set backup                        " enable backups
+set noswapfile                    " it's 2013, Vim.
+set undodir=~/.vim/tmp/undo//     " undo files
+set backupdir=~/.vim/tmp/backup// " backups
+set directory=~/.vim/tmp/swap//   " swap files
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
+
+" COLORING
+"
+syntax enable
+autocmd FileType make set noexpandtab
+
+" MAPPINGS
+"
+" quit vim
+nnoremap K :q<cr>
+" Man page of the current hit
+nnoremap M K
+
+" LEADER MAPPINGS
+"
+" Hidden Characters
+nnoremap <leader>i :set list!<cr>
+nnoremap <leader>m :!make -s<cr>
+nnoremap <leader>c :!make -s clean<cr>
+nnoremap <leader><CR> :!make -s clean; make -s<cr>
+
+" DIFF
+"
+" diffthis, diffoff
+function! DiffToggle()
+    if &diff
+        diffoff
+    else
+        diffthis
+    endif
+:endfunction
+noremap <silent> <leader>d :call DiffToggle()<CR>
+
+" NAVIGATION
+"
+noremap <leader><Left> :tabprevious<CR>
+noremap <leader><Right> :tabnext<CR>
+noremap <leader><Down> :tabmove -1<CR>
+noremap <leader><Up> :tabmove +1<CR>
+map <leader>h :tabprevious<CR>
+map <leader>l :tabnext<CR>
+map <leader>j :tabmove -1<CR>
+map <leader>k :tabmove +1<CR>
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <leader>v <C-w>v
+
+" HIGHLIGHTING
+"
+" highlight any characters that go beyond the 80 char limit
+autocmd BufNewFile,BufRead *.c,*.h,*.cpp,*.php,*.java,makefile,makefile.* match ErrorMsg '\%>80v.\+'
+noremap <F2> :set spell! spell?<CR>
+noremap <F3> :set hlsearch! hlsearch?<CR> 
