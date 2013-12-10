@@ -52,7 +52,7 @@ termcapinfo xterm*|rxvt*|kterm*|Eterm* hs:ts=\E]0;:fs=\007:ds=\E]0;\007
 
 #Hardstatus
 hardstatus on
-hardstatus string "%{-b wk}$LOGNAME@%H %{+b kB} %n %t [%f] %{-b wk} %{-b wk}%-w%{-b kR}%n %t%{-b wk}%+w%=%d %M %Y %c"
+hardstatus string "%{-b wk}$LOGNAME@%H %{+b kB} %n [%f] %{-b wk} %{-b wk}%-w%{-b kR}%n %t%{-b wk}%+w%=%d %M %Y %c"
 hardstatus alwayslastline
 
 # An alternative hardstatus to display a bar at the bottom listing the
