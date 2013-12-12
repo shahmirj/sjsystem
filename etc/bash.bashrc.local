@@ -16,3 +16,5 @@ alias diff='colordiff'
 
 alias h='history'
 alias j='jobs -l'
+
+export EDITOR=vim
