@@ -48,6 +48,10 @@ endif
 "
 syntax enable
 autocmd FileType make set noexpandtab
+" set the filetype for certain unknowns
+autocmd BufRead,BufNewFile *.tpp set filetype=cpp
+" set the filetype for certain unknowns
+autocmd BufRead,BufNewFile *.sass set filetype=css
 
 " MAPPINGS
 "
@@ -95,6 +99,13 @@ noremap <leader>v <C-w>v
 " HIGHLIGHTING
 "
 " highlight any characters that go beyond the 80 char limit
-autocmd BufNewFile,BufRead *.c,*.h,*.cpp,*.php,*.java,makefile,makefile.* match ErrorMsg '\%>80v.\+'
+autocmd BufRead,BufNewFile *.py,*.c,*.h,*.cpp,*.php,*.java,makefile,makefile.*,*.tpp match ErrorMsg '\%>80v.\+'
+" Change spelling hightlight as it is fucking annoying
+hi clear SpellBad
+hi SpellBad cterm=underline,bold ctermfg=1
+hi clear Todo
+hi Todo ctermfg=3 cterm=bold
+
 noremap <F2> :set spell! spell?<CR>
 noremap <F3> :set hlsearch! hlsearch?<CR> 
+nnoremap <F9> :set paste! paste?<CR>
