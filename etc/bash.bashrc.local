@@ -1,5 +1,5 @@
 
-alias pf='ps faux'
+alias pf='ps -faux'
 alias ..='cd ..'
 alias repo='cd $HOME/repo'
 
