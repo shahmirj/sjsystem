@@ -105,6 +105,8 @@ hi clear SpellBad
 hi SpellBad cterm=underline,bold ctermfg=1
 hi clear Todo
 hi Todo ctermfg=3 cterm=bold
+hi clear Search
+hi Search ctermfg=7 cterm=bold
 
 noremap <F2> :set spell! spell?<CR>
 noremap <F3> :set hlsearch! hlsearch?<CR> 
