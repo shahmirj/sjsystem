@@ -28,20 +28,23 @@ let mapleader = ","
 
 " BACKUP
 "
-set backup                        " enable backups
-set noswapfile                    " it's 2013, Vim.
-set undodir=~/.vim/tmp/undo//     " undo files
-set backupdir=~/.vim/tmp/backup// " backups
-set directory=~/.vim/tmp/swap//   " swap files
-" Make those folders automatically if they don't already exist.
-if !isdirectory(expand(&undodir))
-    call mkdir(expand(&undodir), "p")
-endif
-if !isdirectory(expand(&backupdir))
-    call mkdir(expand(&backupdir), "p")
-endif
-if !isdirectory(expand(&directory))
-    call mkdir(expand(&directory), "p")
+" Only valid on the new 730 version
+if version >= 730
+    set backup                        " enable backups
+    set noswapfile                    " it's 2013, Vim.
+    set undodir=~/.vim/tmp/undo//     " undo files
+    set backupdir=~/.vim/tmp/backup// " backups
+    set directory=~/.vim/tmp/swap//   " swap files
+    " Make those folders automatically if they don't already exist.
+    if !isdirectory(expand(&undodir))
+        call mkdir(expand(&undodir), "p")
+    endif
+    if !isdirectory(expand(&backupdir))
+        call mkdir(expand(&backupdir), "p")
+    endif
+    if !isdirectory(expand(&directory))
+        call mkdir(expand(&directory), "p")
+    endif
 endif
 
 " COLORING
