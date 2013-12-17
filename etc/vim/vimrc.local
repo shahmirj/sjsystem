@@ -18,6 +18,7 @@ set title               " Set the title of the window to the vim filename
 set dictionary=/usr/share/dict/words
 set spellfile=~/.vim/custom-dictionary.utf-8.add
 set notimeout
+set spell
 set ttimeout
 set ttimeoutlen=10
 
