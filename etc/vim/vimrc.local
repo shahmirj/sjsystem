@@ -18,6 +18,7 @@ set title               " Set the title of the window to the vim filename
 set dictionary=/usr/share/dict/words
 set spellfile=~/.vim/custom-dictionary.utf-8.add
 set notimeout
+set spell
 set ttimeout
 set ttimeoutlen=10
 
@@ -28,8 +29,8 @@ let mapleader = ","
 
 " BACKUP
 "
-" Only valid on the new 730 version
-if version >= 730
+" Only valid on the new 703 version
+if version >= 703
     set backup                        " enable backups
     set noswapfile                    " it's 2013, Vim.
     set undodir=~/.vim/tmp/undo//     " undo files
