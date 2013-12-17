@@ -29,8 +29,8 @@ let mapleader = ","
 
 " BACKUP
 "
-" Only valid on the new 730 version
-if version >= 730
+" Only valid on the new 703 version
+if version >= 703
     set backup                        " enable backups
     set noswapfile                    " it's 2013, Vim.
     set undodir=~/.vim/tmp/undo//     " undo files
