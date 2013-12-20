@@ -1,5 +1,5 @@
 " @author - Shahmir Javaid
-" @package - vim
+" @package - Vim
 "
 " for best results add to `/etc/vimrc/vimrc.local`
 
@@ -59,7 +59,7 @@ autocmd BufRead,BufNewFile *.sass set filetype=css
 
 " MAPPINGS
 "
-" quit vim
+" quit Vim
 nnoremap K :q<cr>
 " Man page of the current hit
 nnoremap M K
@@ -113,9 +113,13 @@ noremap _ :vertical-resize -1<CR>
 "
 " highlight any characters that go beyond the 80 char limit
 autocmd BufRead,BufNewFile *.py,*.c,*.h,*.cpp,*.php,*.java,makefile,makefile.*,*.tpp match ErrorMsg '\%>80v.\+'
-" Change spelling hightlight as it is fucking annoying
+" Change spelling highlight as it is fucking annoying
 hi clear SpellBad
 hi SpellBad cterm=underline,bold ctermfg=1
+hi clear SpellCap
+hi SpellCap cterm=bold ctermfg=1
+hi clear SpellRare
+hi SpellRare cterm=underline ctermfg=5
 hi clear Todo
 hi Todo ctermfg=3 cterm=bold
 hi clear Search
