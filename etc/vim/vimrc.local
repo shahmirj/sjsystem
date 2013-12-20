@@ -86,19 +86,28 @@ noremap <silent> <leader>d :call DiffToggle()<CR>
 
 " NAVIGATION
 "
+" Move through lines
+noremap <Up> gk
+noremap <Down> gj
+" Move tabs
 noremap <leader><Left> :tabprevious<CR>
 noremap <leader><Right> :tabnext<CR>
 noremap <leader><Down> :tabmove -1<CR>
 noremap <leader><Up> :tabmove +1<CR>
-map <leader>h :tabprevious<CR>
-map <leader>l :tabnext<CR>
-map <leader>j :tabmove -1<CR>
-map <leader>k :tabmove +1<CR>
+" Directory View
+noremap <leader>e :E<CR>
+" Move windows
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+" Create a vertical window
 noremap <leader>v <C-w>v
+" Resize Horizontal and Vertical
+noremap = :resize +1<CR>
+noremap - :resize -1<CR>
+noremap + :vertical-resize +1<CR>
+noremap _ :vertical-resize -1<CR>
 
 " HIGHLIGHTING
 "
