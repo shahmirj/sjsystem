@@ -24,7 +24,6 @@ bind K kill
 bind I login on
 bind O login off
 bind } history
-bindkey -k k4 other
 bindkey -k k5 windowlist
 bindkey -k k6 prev
 bindkey -k k7 next
@@ -82,7 +81,7 @@ defnonblock 5
 #
 screen -t s
 screen -t su su -
-screen -t what-shall-we-do?
+screen -t ---
 # screen -t monkey ssh monkey
 # screen -t mail 8 mutt
 # screen -t daemon 9 tail -f /var/log/daemon.log
