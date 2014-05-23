@@ -129,3 +129,10 @@ noremap <F2> :set spell! spell?<CR>
 noremap <F3> :set hlsearch! hlsearch?<CR> 
 nnoremap <F9> :set paste! paste?<CR>
 noremap  <F4> :nohl<CR>
+
+" Set the number
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set number
+    autocmd WinLeave * set nonumber
+augroup END
