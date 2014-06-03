@@ -65,14 +65,20 @@ if version >= 703
     endif
 endif
 
-" COLORING
+" FILETYPE SPECIFIC OPTIONS
 "
 syntax enable
 autocmd FileType make set noexpandtab
-" set the filetype for certain unknowns
+" set the filetype for tpp files to be of cpp
 autocmd BufRead,BufNewFile *.tpp set filetype=cpp
-" set the filetype for certain unknowns
+" set the filetype for SASS files to be of CSS
 autocmd BufRead,BufNewFile *.sass set filetype=css
+" Set the textwidth among other option for documentation type files
+autocmd BufRead,BufNewFile *.txt,*.asciidoc,README,README.md,TODO,CHANGELOG,NOTES,ABOUT,LICENSE
+        \ setlocal autoindent filetype=asciidoc
+        \ textwidth=80 wrap formatoptions=tcqn
+        \ formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*<\\d\\+>\\s\\+\\\\|^\\s*[a-zA-Z.]\\.\\s\\+\\\\|^\\s*[ivxIVX]\\+\\.\\s\\+
+        \ comments=s1:/*,ex:*/,://,b:#,:%,:XCOMM,fb:-,fb:*,fb:+,fb:.,fb:>
 
 " MAPPINGS
 "
