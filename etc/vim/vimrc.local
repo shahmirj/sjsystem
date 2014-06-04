@@ -3,7 +3,7 @@
 "
 " for best results add to `/etc/vimrc/vimrc.local`
 
-" GENERAL SETS
+" GENERAL
 "
 set autowrite		" Automatically save before commands like :next and :make
 set dictionary=/usr/share/dict/words
@@ -65,14 +65,19 @@ if version >= 703
     endif
 endif
 
-" FILETYPE SPECIFIC OPTIONS
+" FILETYPE
 "
 syntax enable
+" Disable tabs for makefile because they require special tabbing
 autocmd FileType make set noexpandtab
+" highlight any characters that go beyond the 80 char limit
+autocmd BufRead,BufNewFile *.py,*.c,*.h,*.cpp,*.php,*.java,makefile,makefile.*,*.tpp match ErrorMsg '\%>80v.\+'
 " set the filetype for tpp files to be of cpp
 autocmd BufRead,BufNewFile *.tpp set filetype=cpp
 " set the filetype for SASS files to be of CSS
 autocmd BufRead,BufNewFile *.sass set filetype=css
+" set the filetype for VagrantFile files to be of ruby
+autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
 " Set the textwidth among other option for documentation type files
 autocmd BufRead,BufNewFile *.txt,*.asciidoc,README,README.md,TODO,CHANGELOG,NOTES,ABOUT,LICENSE
         \ setlocal autoindent filetype=asciidoc
@@ -86,28 +91,21 @@ autocmd BufRead,BufNewFile *.txt,*.asciidoc,README,README.md,TODO,CHANGELOG,NOTE
 nnoremap K :q<cr>
 " Man page of the current hit
 nnoremap M K
-
-" LEADER MAPPINGS
+" Function keys
+noremap <F2> :set spell! spell?<CR>
+noremap <F3> :set hlsearch! hlsearch?<CR> 
+nnoremap <F9> :set paste! paste?<CR>
+noremap  <F4> :nohl<CR>
+"
+" MAPPINGS LEADER
 "
 " Hidden Characters
 nnoremap <leader>i :set list!<cr>
 nnoremap <leader>m :!make -s<cr>
 nnoremap <leader>c :!make -s clean<cr>
 nnoremap <leader><CR> :!make -s clean; make -s<cr>
-
-" DIFF
 "
-" diffthis, diffoff
-function! DiffToggle()
-    if &diff
-        diffoff
-    else
-        diffthis
-    endif
-:endfunction
-noremap <silent> <leader>d :call DiffToggle()<CR>
-
-" NAVIGATION
+" MAPPING NAVIGATION
 "
 " Move through lines
 noremap <Up> gk
@@ -132,10 +130,20 @@ noremap - <C-w>-
 noremap + <C-w>>
 noremap _ <C-w><
 
+" DIFF
+"
+" diffthis, diffoff
+function! DiffToggle()
+    if &diff
+        diffoff
+    else
+        diffthis
+    endif
+:endfunction
+noremap <silent> <leader>d :call DiffToggle()<CR>
+
 " HIGHLIGHTING
 "
-" highlight any characters that go beyond the 80 char limit
-autocmd BufRead,BufNewFile *.py,*.c,*.h,*.cpp,*.php,*.java,makefile,makefile.*,*.tpp match ErrorMsg '\%>80v.\+'
 " Change spelling highlight as it is fucking annoying
 hi clear SpellBad
 hi SpellBad cterm=underline,bold ctermfg=1
@@ -147,13 +155,7 @@ hi clear Todo
 hi Todo ctermfg=3 cterm=bold
 hi clear Search
 hi Search ctermfg=7 cterm=bold
-
-noremap <F2> :set spell! spell?<CR>
-noremap <F3> :set hlsearch! hlsearch?<CR> 
-nnoremap <F9> :set paste! paste?<CR>
-noremap  <F4> :nohl<CR>
-
-" Set the number
+" Set the number on the current screen
 augroup BgHighlight
     autocmd!
     autocmd WinEnter * set number
