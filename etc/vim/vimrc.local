@@ -120,6 +120,8 @@ noremap <leader><Down> :tabmove -1<CR>
 noremap <leader><Up> :tabmove +1<CR>
 " Directory View
 noremap <leader>e :E<CR>
+noremap <leader>t :NERDTree<CR>
+noremap <leader>s :CtrlP<CR>
 " Move windows
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
