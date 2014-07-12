@@ -65,6 +65,8 @@ if version >= 703
     endif
 endif
 
+execute pathogen#infect()
+
 " FILETYPE
 "
 syntax enable
@@ -78,6 +80,7 @@ autocmd BufRead,BufNewFile *.tpp set filetype=cpp
 autocmd BufRead,BufNewFile *.sass set filetype=css
 " set the filetype for VagrantFile files to be of ruby
 autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
+autocmd BufNewFile,BufRead *.groovy,*.gradle set filetype=groovy 
 " Set the textwidth among other option for documentation type files
 autocmd BufRead,BufNewFile *.txt,*.asciidoc,README,README.md,TODO,CHANGELOG,NOTES,ABOUT,LICENSE
         \ setlocal autoindent filetype=asciidoc
