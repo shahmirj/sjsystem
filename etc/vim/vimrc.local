@@ -65,21 +65,24 @@ if version >= 703
     endif
 endif
 
+execute pathogen#infect()
+
 " FILETYPE
 "
 syntax enable
 " Disable tabs for makefile because they require special tabbing
 autocmd FileType make set noexpandtab
 " highlight any characters that go beyond the 80 char limit
-autocmd BufRead,BufNewFile *.py,*.c,*.h,*.cpp,*.php,*.java,makefile,makefile.*,*.tpp match ErrorMsg '\%>80v.\+'
+autocmd BufNewFile,BufRead *.py,*.c,*.h,*.cpp,*.php,*.java,makefile,makefile.*,*.tpp match ErrorMsg '\%>80v.\+'
 " set the filetype for tpp files to be of cpp
-autocmd BufRead,BufNewFile *.tpp set filetype=cpp
+autocmd BufNewFile,BufRead *.tpp set filetype=cpp
 " set the filetype for SASS files to be of CSS
-autocmd BufRead,BufNewFile *.sass set filetype=css
+autocmd BufNewFile,BufRead *.sass set filetype=css
 " set the filetype for VagrantFile files to be of ruby
-autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
+autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
+autocmd BufNewFile,BufRead *.groovy,*.gradle set filetype=groovy 
 " Set the textwidth among other option for documentation type files
-autocmd BufRead,BufNewFile *.txt,*.asciidoc,README,README.md,TODO,CHANGELOG,NOTES,ABOUT,LICENSE
+autocmd BufNewFile,BufRead *.txt,*.asciidoc,README,README.md,TODO,CHANGELOG,NOTES,ABOUT,LICENSE
         \ setlocal autoindent filetype=asciidoc
         \ textwidth=80 wrap formatoptions=tcqn
         \ formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*<\\d\\+>\\s\\+\\\\|^\\s*[a-zA-Z.]\\.\\s\\+\\\\|^\\s*[ivxIVX]\\+\\.\\s\\+
@@ -117,6 +120,8 @@ noremap <leader><Down> :tabmove -1<CR>
 noremap <leader><Up> :tabmove +1<CR>
 " Directory View
 noremap <leader>e :E<CR>
+noremap <leader>t :NERDTree<CR>
+noremap <leader>s :CtrlPCurWD<CR>
 " Move windows
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
