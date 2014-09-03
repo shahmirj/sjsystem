@@ -136,6 +136,19 @@ noremap - <C-w>-
 noremap + <C-w>>
 noremap _ <C-w><
 
+" MAC OSX
+if has("unix")
+    let s:uname = system("uname")
+    if s:uname == "Darwin\n"
+        :map <ESC>[H <Home>
+        :map <ESC>[F <End>
+        :imap <ESC>[H <C-O><Home>
+        :imap <ESC>[F <C-O><End>
+        :cmap <ESC>[H <Home>
+        :cmap <ESC>[F <End>
+    endif
+endif
+
 " DIFF
 "
 " diffthis, diffoff
