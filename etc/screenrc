@@ -24,10 +24,10 @@ bind K kill
 bind I login on
 bind O login off
 bind } history
-bindkey -k k5 windowlist
-bindkey -k k6 prev
-bindkey -k k7 next
-bindkey -k k8 title
+bindkey -k k8 windowlist
+bindkey -k k7 prev
+bindkey -k k9 next
+bindkey -k k6 title
 bind = resize =
 bind + resize +1
 bind - resize -1
