@@ -1,0 +1,26 @@
+[user]
+    name = Shahmir Javaid
+    email = shahmirj@gmail.com
+[credential]
+    helper = cache --timeout=3600
+    username = shahmirj@gmail.com
+[color]
+    ui = auto
+    pager = true
+    status = true
+[merge]
+    commit = no
+[alias]
+    ci = commit
+    up = pull --rebase
+    st = status
+    br = branch
+    graph = log --graph --oneline --all --decorate
+    search = grep -n
+[push]
+    default = current
+[pull]
+    default = current
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f

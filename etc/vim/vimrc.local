@@ -81,6 +81,7 @@ autocmd BufNewFile,BufRead *.sass set filetype=css
 " set the filetype for VagrantFile files to be of ruby
 autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 autocmd BufNewFile,BufRead *.groovy,*.gradle set filetype=groovy 
+autocmd BufNewFile,BufRead *.hdl set filetype=hdl
 " Set the textwidth among other option for documentation type files
 autocmd BufNewFile,BufRead *.txt,*.asciidoc,README,README.md,TODO,CHANGELOG,NOTES,ABOUT,LICENSE
         \ setlocal autoindent filetype=asciidoc
@@ -134,6 +135,19 @@ noremap = <C-w>+
 noremap - <C-w>-
 noremap + <C-w>>
 noremap _ <C-w><
+
+" MAC OSX
+if has("unix")
+    let s:uname = system("uname")
+    if s:uname == "Darwin\n"
+        :map <ESC>[H <Home>
+        :map <ESC>[F <End>
+        :imap <ESC>[H <C-O><Home>
+        :imap <ESC>[F <C-O><End>
+        :cmap <ESC>[H <Home>
+        :cmap <ESC>[F <End>
+    endif
+endif
 
 " DIFF
 "
