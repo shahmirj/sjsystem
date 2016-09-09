@@ -88,6 +88,8 @@ autocmd BufNewFile,BufRead *.txt,*.asciidoc,README,README.md,TODO,CHANGELOG,NOTE
         \ textwidth=80 wrap formatoptions=tcqn
         \ formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*<\\d\\+>\\s\\+\\\\|^\\s*[a-zA-Z.]\\.\\s\\+\\\\|^\\s*[ivxIVX]\\+\\.\\s\\+
         \ comments=s1:/*,ex:*/,://,b:#,:%,:XCOMM,fb:-,fb:*,fb:+,fb:.,fb:>
+" Arm assembly file
+autocmd BufNewFile,BufRead *.s,*.S set filetype=arm " arm = armv6/7"
 
 " MAPPINGS
 "
