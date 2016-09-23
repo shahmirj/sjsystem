@@ -6,6 +6,7 @@
 " GENERAL
 "
 set autowrite		" Automatically save before commands like :next and :make
+set backspace=start,eol,indent " For some reason need this for MAC OSX
 set dictionary=/usr/share/dict/words
 set expandtab
 set fillchars=vert:\|    " The verticle split character
@@ -182,3 +183,4 @@ augroup BgHighlight
     autocmd WinEnter * set number
     autocmd WinLeave * set nonumber
 augroup END
+
