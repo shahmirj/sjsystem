@@ -14,9 +14,15 @@
 [alias]
     ci = commit
     up = pull --rebase
-    st = status
+    co = checkout
+    cb = checkout -b
+    fe = fetch
+    st = status --short -b
     br = branch
+    re = rebase
+    me = merge
     graph = log --graph --oneline --all --decorate
+    tree = log --graph --oneline --all --decorate
     search = grep -n
 [push]
     default = current
@@ -32,6 +38,6 @@
     smudge = git hawser smudge %f
     required = true
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
