@@ -12,23 +12,35 @@
     commit = no
     ff = false
 [alias]
-    ci = commit
-    up = pull --rebase
-    co = checkout
-    cb = checkout -b
-    fe = fetch
-    st = status --short -b
     br = branch
-    re = rebase
+    br = branch
+    brf = branch -f
+    bi = bisect
+    ci = commit
+    cia = commit --amend
+    co = checkout
+    cob = checkout -b
+    cp = cherry-pick
+    di = diff --color --ws-error-highlight=new,old
+    fe = fetch
     me = merge
-    graph = log --graph --oneline --all --decorate
-    tree = log --graph --oneline --all --decorate
+    re = rebase
+    rea = rebase --abort
+    rec = rebase --continue
+    rei = rebase --interactive
     search = grep -n
+    st = status --short -b
+    up = pull --rebase
+    
+    graph = log --graph --oneline --all --topo-order --decorate --boundary
+    tree = log --graph --oneline --decorate
 [push]
     default = current
 [pull]
     default = current
     rebase = true
+[fetch]
+    prune = true
 [filter "media"]
     required = true
     clean = git media clean %f
@@ -41,3 +53,5 @@
     clean = git-lfs clean %f
     smudge = git-lfs smudge %f
     required = true
+[diff]
+    colorMoved=default
