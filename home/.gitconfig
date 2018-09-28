@@ -32,7 +32,8 @@
     st = status --short -b
     up = pull --rebase
     
-    graph = log --graph --oneline --all --topo-order --decorate --boundary
+    gr = log --graph --oneline --topo-order --all --decorate --boundary
+    gro = log --remotes=origin --graph --oneline --topo-order --decorate --boundary
     tree = log --graph --oneline --decorate
 [push]
     default = current
