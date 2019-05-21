@@ -35,6 +35,7 @@
     gr = log --graph --oneline --topo-order --all --decorate --boundary
     gro = log --remotes=origin --graph --oneline --topo-order --decorate --boundary
     tree = log --graph --oneline --decorate
+    ta = tag --sort=creatordate
 [push]
     default = current
 [pull]
@@ -42,6 +43,8 @@
     rebase = true
 [fetch]
     prune = true
+    prune-tags = true
+    tags = true
 [filter "media"]
     required = true
     clean = git media clean %f
