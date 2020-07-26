@@ -1,0 +1,159 @@
+#!/bin/bash -e
+#
+# Migrate script configures my mac book to ensure I have everything I use
+#
+# Just run `./migrate`.
+#
+# This will stop and tell you, you need to install
+
+
+# VERSIONS
+
+# You will have to install 3.7.1 explicitly by running
+#
+#   brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/db004f83243963caf8be2ebdb4d0e660d7f7cb4e/Formula/python.rb
+PYTHON_VERSION="3.7.1"
+
+# The rsync that comes with MAC OSx does not have the functionality
+# that version 3.2.2 has as well as this version is what we need as a minimum
+# to do any upgrades
+RSYNC_VERSION="3.2.2"
+
+# Flags of programs
+RSYNC_FLAGS="-aurzPn --stats"
+
+# Echo flags
+T="[x]"
+F="[ ]"
+E="[!]"
+
+# Ensure that zsh is installed
+echo "Checking Shell"
+echo "=============="
+if [ "$SHELL" != "/bin/zsh" ]; then
+  echo "$E 'zsh' is not installed you are currently using '$SHELL'"
+  echo
+  echo "Install using instructions on https://ohmyz.sh/#install"
+  exit 1
+else
+  echo "$T 'zsh' installed"
+fi
+echo
+
+# Ensure the following commands are installed
+echo "Checking Commands"
+echo "================="
+for CMD in "brew" "git" "python" "python3" "pip3" "bpython" "docker" "htop"
+do
+    if ! command -v $CMD > /dev/null
+    then
+        echo "$E '$CMD' not found!"
+        if [ "$CMD" != "brew" ]; then echo "Maybe try 'brew install $CMD'"; fi
+        exit 1
+    else
+        echo "$T '$CMD' found"
+    fi
+done
+echo
+
+# Ensure the versions match
+#
+# Because python by default is the mac one, so install the correct one using
+# brew, and ensure the versions match
+echo "Checking Versions"
+echo "================="
+if ! python3 --version 2>&1 | grep -o $PYTHON_VERSION > /dev/null
+then
+  echo "$E python3 version is not $PYTHON_VERSION found == $(python3 --version 2>&1)"
+  exit 2
+else
+  echo "$T python3 --version == $PYTHON_VERSION"
+fi
+if ! rsync --version 2>&1 | grep -o $RSYNC_VERSION > /dev/null
+then
+  echo "$E rsync version is not $RSYNC_VERSION found == $(rsync --version 2>&1)"
+  exit 2
+else
+  echo "$T rsync --version == $RSYNC_VERSION"
+fi
+echo
+
+# APPLICATIONS
+#
+# Ensure that specific applications are installed
+echo "Checking Applications"
+echo "====================="
+for APP in "Google Chrome.app" "Backup and Sync.app" "1Password 7.app" "Docker.app" "JetBrains Toolbox.app" "Slack.app" "zoom.us.app"
+do
+  if ! ls -l "/Applications/$APP" > /dev/null 2>&1
+  then
+    echo "$E '$APP' not found!"
+    exit 1
+  else
+    echo "$T '$APP' found"
+  fi
+done
+echo
+
+
+# If ./migrate was run with an argument ($1) which should be an ipaddress
+# it will use this as an rsync location to update this OS
+if [ $1 ]
+then
+
+  # Ensure we can connect to it
+  if ! ping -c 1 $1 &> /dev/null; then
+    echo "$E Could not connect to '$1', sync failed"
+    exit $?
+  else
+    echo "$T Ping $1 successful"
+  fi
+
+  # Sync
+  echo "Syncing"
+  echo "======="
+  echo
+
+  # Install some fonts, that I love
+  echo "Fonts"
+  echo "-----"
+  for FONT in "Roboto*" "Source\ Code\ Pro*"
+  do
+    echo
+    echo "Syncing: $FONT"
+    rsync $RSYNC_FLAGS $1:~/Library/Fonts/"$FONT" ~/Library/Fonts/.
+  done
+  echo
+
+  # Copy my code git repo
+  echo "repo"
+  echo "----"
+  rsync $RSYNC_FLAGS --exclude="venv" --exclude="node_modules" $1:~/repo ~/.
+  echo
+
+  # Copy my documents
+  echo "Documents"
+  echo "---------"
+  rsync $RSYNC_FLAGS --exclude="Adobe" $1:~/Documents/. ~/Documents/.
+  echo
+
+  # Copy my downloads
+  echo "Downloads"
+  echo "---------"
+  rsync $RSYNC_FLAGS $1:~/Downloads/. ~/Downloads/.
+  echo
+
+  # Dotfiles that I use, these are symlinks really.
+  echo ".dot-files"
+  echo "----------"
+  for DOT in ".zshrc" ".gitconfig" ".vim" ".config/htop/htoprc"
+  do
+    echo
+    echo "Syncing: $DOT"
+    rsync $RSYNC_FLAGS $1:~/$DOT ~/$(dirname $DOT)/.
+  done
+  echo
+fi
+
+# Exit correctly
+exit 0

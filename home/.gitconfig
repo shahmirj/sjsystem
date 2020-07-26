@@ -12,10 +12,9 @@
     commit = no
     ff = false
 [alias]
-    br = branch
+    bi = bisect
     br = branch
     brf = branch -f
-    bi = bisect
     ci = commit
     cia = commit --amend
     co = checkout
@@ -23,19 +22,22 @@
     cp = cherry-pick
     di = diff --color --ws-error-highlight=new,old
     fe = fetch
+    gr = log --graph --oneline --topo-order --all --decorate --boundary
+    gro = log --remotes=origin --graph --oneline --topo-order --decorate --boundary
     me = merge
+    mef = merge --ff
     re = rebase
     rea = rebase --abort
     rec = rebase --continue
-    rei = rebase --interactive
-    search = grep -n
+    rei = rebase --interactive --autosquash
     st = status --short -b
-    up = pull --rebase
-    
-    gr = log --graph --oneline --topo-order --all --decorate --boundary
-    gro = log --remotes=origin --graph --oneline --topo-order --decorate --boundary
-    tree = log --graph --oneline --decorate
     ta = tag --sort=creatordate
+    up = pull --rebase
+    sup = submodule update
+
+    search = grep -n
+    tree = log --graph --oneline --decorate
+
 [push]
     default = current
 [pull]
