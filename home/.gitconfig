@@ -30,7 +30,13 @@
     rea = rebase --abort
     rec = rebase --continue
     rei = rebase --interactive --autosquash
+    remi = rebase  --rebase-merges --interactive --autosquash
     st = status --short -b
+    sa = stash
+    sal = stash list
+    saa = stash apply
+    sap = stash pop
+    sac = stash clear
     ta = tag --sort=creatordate
     up = pull --rebase
     sup = submodule update
@@ -61,3 +67,5 @@
     required = true
 [diff]
     colorMoved=default
+[pager]
+    diff = diff-so-fancy | less --tabs=4 -F
